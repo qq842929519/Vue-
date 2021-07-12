@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>初识Vue</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <!--
+        1.<div id="root">是一个容器，容器中写的不是原始heml代码，而是Vue的模板代码
+        2.所谓的模板代码，类似于react中的jsx，是html+js的混合体
+        3.{{xxx}}，xxx会自动读取data中的xxx属性
+    -->
+    
+    <!--准备好一个容器-->
+    <div id="root">
+        <h1>hello {{school}}</h1>
+        <h1>hello {{school.name.toUpperCase()}}</h1>
+        <h1>hello {{school.add}}</h1>
+        <h1>hello {{school.subject()}}</h1>
+        
+        <hr/>
+
+        <h1>{{school.name,school.add}}</h1> <!--最总展示的是name-->
+        <h1>{{school.name && school.add}}</h1> <!--最总展示的是add-->
+        <h1>{{school.name ? 1:2}}</h1><!--最总展示的是1-->
+    </div>
+    <script type="text/javascript">
+        //创建一个Vue的实例对象,并传入配置对象
+        const v = new Vue({
+            el:'#root', //el用于指定当前Vue实例为哪个容器服务，值是选择器字符串，选择的写法类似于jQuery
+            data:{//date是存储数据的地方，为root容器提供数据，值为一个对象，相当于react的state
+                school:{
+                    name:'aaa',
+                    add:'222',
+                    subject:()=>'web'
+                }
+
+            } 
+
+
+        }); 
+
+    </script>
+</body>
+</html>
