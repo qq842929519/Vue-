@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>数据代理</title>
+</head>
+<body>
+    <!--准备好一个容器-->
+    <div id="root">
+        <h2>学校名字：{{name}}</h2>
+        <h2>学校地址：{{address}}</h2>
+        <h2>学科：{{subject}}</h2>
+    </div>
+
+    <script>
+     const vm = new Vue({
+         el:'#root',
+         data:{
+             name:'aaa',
+             address:'bbb',
+             subject:'ccc'
+         }
+     })
+     
+     console.log(name)
+    </script>
+</body>
+</html>

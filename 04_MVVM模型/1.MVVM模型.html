@@ -6,55 +6,31 @@
     <script type="text/javascript" src="../js/vue.js"></script>
 </head>
 <body>
+    <!--
+        MVVM模型的理解：
+        1.M：模型(Model):对应data中的数据
+        2.V：视图(View)：模板代码
+        3.VM：试图模型(ViewModel):Vue实例对象
+    -->
         <div id="root">
                 <h2>hello,{{msg}}</h2>
                 <h2>地址：{{add}}</h2>
               </div>
         <script>
-            //el第一种写法（常用）
-       /* new Vue({
+            //创建一个Vue实例对象
+        const vm = new Vue({
             el:'#root',
             data:{
                 msg:'aaa',
                 add:'LiuZhou'
             }
 
-        })*/
-       
-       
-        //el第二种写法（不常用）
-        /*const vm = new Vue({
-            data:{
-                msg:'aaa',
-                add:'LiuZhou'
-            }
-
         })
-        vm.$mount('#root')*/
-       
-        
-        //data的第一种写法，data是一个对象
-       /* new Vue({
-            el:'#root',
-            data:{
-                msg:'aaa',
-                add:'LiuZhou'
-                }
-        })*/
-   
-   
-        //data的第二种写法，data是一个函数，返回数据对象
-    new Vue({
-            el:'#root',
-            data:function(){//特别注意：data不要写成箭头函数
-                console.log(this)
-                return{
-                    msg:'ccc',
-                    add:'LiuZhou'
-                }
-            }
-        })
-    
+       //观察发现：通过vm能看到data中的属性(注意不是看到data)
+       setTimeout(() => {
+           console.log(vm.msg)//通过vm可以读取到data中的数据
+           vm.msg = 'bbb'//通过vm可以修改data中的数据
+       }, 2000);
         </script>
 
 </body>
