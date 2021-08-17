@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>姓名案例_插值语法</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        姓：<input type="text" v-model="firstName"><br>
+        名：<input type="text" v-model="lastName"><br>
+        <span>全名：{{firstName+'-'+lastName}}</span>
+    </div>
+    <script>
+        new Vue({
+            el:"#root",
+            data:{
+                firstName:'张',
+                lastName:'三'
+            }
+        })
+    </script>
+</body>
+</html>
