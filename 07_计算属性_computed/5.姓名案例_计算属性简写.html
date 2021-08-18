@@ -21,18 +21,20 @@
                         lastName:'三'
                     },
                     computed:{
-                        fullName:{
-                            //get有什么作用？当有人读取fullname的时候，get就会被调用，且返回值被作为fullname的值
-                            //get什么时候i调用？1。初次读取fullname时。2.所依赖的数据发生变化时
-                            get(){
-                                return this.firstName + '-' +this.lastName
-                            },
-                            set(value){
-                                console.log('set',value)
-                                const arr = value.split('-')
-                                this.firstName = arr[0]
-                                this.lastName = arr[1]
-                            }
+                        // fullName:{
+                        //     get(){
+                        //         return this.firstName + '-' +this.lastName
+                        //     },
+                        //     set(value){
+                        //         console.log('set',value)
+                        //         const arr = value.split('-')
+                        //         this.firstName = arr[0]
+                        //         this.lastName = arr[1]
+                        //     }
+                        // }
+                        fullName(){
+                           console.log('get被调用')
+                           return this.firstName + '-' +this.lastName
                         }
                     }
                 })
