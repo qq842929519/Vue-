@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>姓名案例_methods实现</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+        <div id="root">
+                姓：<input type="text" v-model="firstName"><br>
+                名：<input type="text" v-model="lastName"><br>
+                <span>全名：{{fullName}}</span>
+            </div>
+            <script>
+                Vue.config.productionTip = false//阻止vue在启动时生成生产提示
+
+                const vm = new Vue({
+                    el:'#root',
+                    data:{
+                        firstName:'张',
+                        lastName:'三',
+                        fullName:'张-三'
+                    },
+                    watch:{
+                        firstName(newValue){
+                            console.log('我的姓改了')
+                             this.fullName = newValue + '-' + this.lastName
+                        },
+                        lastName(newValue){
+                            console.log('我的名改了')
+                             this.fullName = this.firstName + '-' + newValue
+                        }
+                    },
+
+                })
+                
+            </script>
+</body>
+</html>
