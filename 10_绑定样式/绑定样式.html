@@ -44,6 +44,9 @@
 
 
         <div class="basic" :style="{fontSize: fsize + 'px'}">{{name}}</div>
+
+
+        <div class="basic" :style="styleObj">{{name}}</div>
     </div>
 
     <script>
@@ -59,7 +62,12 @@
                     basic2:false,
                     basic3:false
                 },
-                fsize:40
+                fsize:40,
+                styleObj:{
+                    fontSize:'40px',
+                    backgroundColor:'red',
+                    borderRadius:'30px'
+                }
 
             },
             methods: {
