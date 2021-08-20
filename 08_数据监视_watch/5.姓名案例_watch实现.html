@@ -23,8 +23,11 @@
                     },
                     watch:{
                         firstName(newValue){
-                            console.log('我的姓改了')
-                             this.fullName = newValue + '-' + this.lastName
+                            setTimeout(()=>{
+                                console.log('我的姓改了')
+                                this.fullName = newValue + '-' + this.lastName
+                            },1000)
+                             
                         },
                         lastName(newValue){
                             console.log('我的名改了')

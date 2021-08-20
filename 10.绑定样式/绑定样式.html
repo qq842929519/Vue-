@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+    <style>
+        .basic{
+            height: 200px;
+            width: 300px;
+        }
+        .happy{
+            background-color: blueviolet;
+            border:3px solid red; 
+        }
+        .sad{
+            background-color: rgba(231, 235, 6, 0.116);
+            border:2px solid blue; 
+        }
+        .soso{
+            background-color: rgb(250, 8, 8);
+            border:2px solid green; 
+        }
+        .basic1{
+            background-color: rgba(231, 235, 6, 0.116);
+            border:3px solid blue; 
+        }
+        .basic2{
+            border-radius: 30px;
+        }
+        .basic3{
+            font-size: 30px;
+        }
+    </style>
+</head>
+<body>
+    <div id="root">
+            <!-- 绑定class样式--字符串写法，适用于：样式的类名不确定，取药动态指定 -->
+        <div class="basic" :class="mood" @click="changeMood"><p>{{name}}</p></div><br><br>
+        <!-- 绑定class样式--数组写法，适用于：样式的类名不确定，名字也不确定-->
+        <div class="basic" :class="classArr" @click="changeMood"><p>{{name}}</p></div><br><br>
+        <!-- 绑定class样式--对象写法，适用于：样式的个数确定，名字也确定，但需要动态决定用不用 -->
+        <div class="basic" :class="classObj" @click="changeMood"><p>{{name}}</p></div>
+
+
+        <div class="basic" :style="{fontSize: fsize + 'px'}">{{name}}</div>
+    </div>
+
+    <script>
+        Vue.config.productionTip = false
+       const vm = new Vue({
+            el:"#root",
+            data:{
+                name:'liuzhou',
+                mood:'sad',
+                classArr:['basic1','basic2','basic3'],
+                classObj:{
+                    basic1:false,
+                    basic2:false,
+                    basic3:false
+                },
+                fsize:40
+
+            },
+            methods: {
+                changeMood(){
+                    const arr = ['happy','sad','soso']
+                    this.mood = arr[Math.floor(Math.random()*3)]
+                }
+            },
+        })
+    </script>
+</body>
+</html>
