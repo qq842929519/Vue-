@@ -8,12 +8,9 @@
 <body>
     <div id="root">
         <h2>人员列表</h2>
+        <button @click="updata">改梅</button>
         <ul>
-            <input type="text" placeholder="请输入名字" v-model="keyWord">
-            <button @click="sortType = 2">年龄升序</button>
-            <button  @click="sortType = 1">年龄降序</button>
-            <button  @click="sortType = 0">年龄原序</button>
-            <li v-for="(p,index) in filPersons" :key="p.id">
+            <li v-for="(p,index) in persons" :key="p.id">
                 {{p.name}}-{{p.age}}-{{p.sex}}
             </li>
         </ul>
@@ -33,20 +30,13 @@
                     {id:'004',name:'温兆伦',age:20,sex:'男'},
                 ],
             },
-            computed:{
-                filPersons(){
-                    const arr = this.persons.filter((p)=>{
-                        return p.name.indexOf(this.keyWord) !== -1
-                    })
-                    //判断一下是否需要排序
-                    if(this.sortType){
-                        arr.sort((a,b)=>{
-                            return this.sortType === 1 ? b.age-a.age : a.age-b.age
-                        })
-                    }
-                    return arr
+            methods: {
+                updata(){
+                    this.persons[0].name = '马老师'
+                    this.persons[0].age = 50
+                    this.persons[0].sex = '男'
                 }
-            }
+            },
         })
     </script>   
 </body>
