@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let data = {
+            name:'liuzhou',
+            address:'guangxi'
+        }
+
+        //创建一个坚实的实例对象，用于监视data中的属性的变化
+        const obs = new Obsserver(data)
+        console.log(obs)
+
+        //准备一个vm实例对象
+        let vm = {}
+        vm._data = data = obs
+
+        function Obsserver(obj){
+            //汇总对象中所有的属性形成一个数组
+            const keys =Object.keys(obj)
+            //遍历
+            keys.forEach((k)=>{
+                Object.defineProperty(this,k,{
+                get(){
+                    return obj[k]
+                },
+                set(val){
+                    console.log(`${k}被改了，我要去解析模板，生成虚拟DOM`)
+                    obj[k] = val
+                }
+                })
+            })
+        }
+    </script>
+</body>
+</html>
