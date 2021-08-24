@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<body>
+    <button id="btn"></button>
+    <script>
+    const btn = document.getElementById('btn')
+
+    btn.onclick = ()=>{
+        const input = document.createElement('input')
+
+        input.className = 'demo'
+
+        
+        document.body.appendChild(input)
+
+        input.focus()
+    }
+    </script>
+</body>
+</html>
