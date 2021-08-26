@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+        <h2 :style="{opacity}">欢迎学习Vue</h2>
+        <button @click="opacity = 1">透明度变为1</button>
+        <button @click="stop">点我停止变换</button>
+    </div>
+
+    <script>
+        Vue.config.productionTip = false
+
+        
+        const vm = new Vue({
+            el:'#root',
+            data:{
+                opacity:1
+            },
+            methods: {
+                stop(){
+                    // clearInterval(this.tinmer)
+                    this.$destroy()
+                }
+            },
+            //Vue完成模板的解析并把初始的真实DOM元素放入页面后（挂在完毕）调用mounted
+            mounted() {
+                console.log('mount',this)
+                       this.tinmer = setInterval(() => {
+                           console.log('setInterval')
+                        this.opacity -= 0.01
+                        if(this.opacity <= 0) this.opacity = 1
+                        }, 16)
+            },
+            beforeDestroy() {
+                console.log('vm要没了')
+                clearInterval(this.tinmer)
+            },
+        })
+    </script>
+</body>
+</html>

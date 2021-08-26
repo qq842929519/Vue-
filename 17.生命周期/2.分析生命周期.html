@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title></title>
+	<script type="text/javascript" src="../js/vue.js"></script>
+</head>
+<body>
+	<div id="root" :x="n">
+		<h2>当前的n值是：{{n}}</h2>
+		<button @click="add">+1</button>
+		<button @click="bye">点我销毁vm</button>
+	</div>
+	
+	<script type="text/javascript">
+		Vue.config.productionTip = false
+		
+		new Vue({
+			el:'#root',
+			// template:`<div>
+			// 			<h2>当前的n值是：{{n}}</h2>
+			// 			<button @click="add">+1</button>
+			// 		  </div>`,
+			data:{
+				n:1
+			},
+			methods:{
+				add(){
+					console.log('add')
+					this.n++
+				},
+				bye(){
+					console.log('我要被销毁了')
+					this.$destroy()
+				}
+			},
+			watch:{
+				n(){
+					console.log('n变了')
+				}
+			},
+			beforeCreate(){
+				console.log('beforeCreate')
+			},
+			created(){
+				console.log('created')
+			},
+			beforeMount(){
+				console.log('beforemount')
+			},
+			mounted() {
+				console.log('mounted')
+			},
+			beforeUpdate() {
+				console.log('beforeundata')
+			},
+			updated() {
+				console.log('updated')
+			},
+			beforeDestroy() {
+				console.log('beforeDestroy')
+				this.add()
+			},
+			destroyed() {
+				console.log('destroyed')
+			},
+			
+		})
+	</script>
+</body>
+</html>

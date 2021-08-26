@@ -13,13 +13,26 @@
     <script>
         Vue.config.productionTip = false
 
-        new Vue({
+        const vm = new Vue({
             el:'#root',
             data:{
                 opacity:1
             },
+            methods: {
+                change(){
+                       setInterval(() => {
+                        this.opacity -= 0.01
+                        if(this.opacity <= 0) this.opacity = 1
+                        }, 16);
+                }
+            },
 
         })
+        //通过外部的定时器实现（不推荐）
+        // setInterval(() => {
+        //     vm.opacity -= 0.01
+        //     if(vm.opacity <= 0) vm.opacity = 1
+        // }, 16);
     </script>
 </body>
 </html>
