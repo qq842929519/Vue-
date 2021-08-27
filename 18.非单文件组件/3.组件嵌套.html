@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<script src="../js/vue.js"></script>
+<body>
+    <div id="root">
+        <!-- 编写组件标签 -->
+        <app></app>
+    <script>
+        Vue.config.productionTip = false
+
+ //创建student组件
+ const student = Vue.extend({
+            template:`
+            <div>
+                <h2>学生姓名：{{studentName}}</h2>
+                <h2>学生年龄：{{age}}</h2>
+            </div>`,
+            data(){
+                return{
+                    studentName:'小明',
+                    age:21,
+                }  
+            }
+        })
+
+        //创建school组件
+        const school = Vue.extend({
+            nama:'school',
+            template:`
+            <div>
+                <h2>学校名称：{{schoolName}}</h2>
+                <h2>学校地址：{{address}}</h2>
+                <student></student>
+            </div>`,
+            data(){
+                return{
+                    schoolName:'南邮通达',
+                    address:'江苏扬州',
+                }  
+            },
+            components:{
+                student
+            }
+        })
+
+        const hello = Vue.extend({
+            template:`
+            <div>
+                <h2>{{msg}}</h2>
+            </div>`,
+            data(){
+                return{
+                    msg:'hello'
+                }
+            },
+        })
+        const app = Vue.extend({
+            template:`
+            <div>
+                <school></school>
+                <hr>
+                <hello></hello>
+            </div>`,
+            components:{
+                school,
+                hello
+            }
+        })
+        //创建vm
+        new Vue({
+            el:'#root',
+           //注册组件(局部注册)
+           components:{
+                app
+           }
+        })
+    </script>
+</body>
+</html>

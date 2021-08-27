@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<script src="../js/vue.js"></script>
+<body>
+
+    <!-- 
+        组件名：
+        一个单词组成：
+            第一种写法（首字母小写）：school
+            第二种写法（首字母大写）：School
+        多个单词组成：
+            第一种写法（kebab-case命名）：my-school
+            第二种写法（CamelCase命名）：MySchool（需要Vue脚手架支持）
+
+        （1）.组件名尽可能回避HTML中已有的元素名称，例如：<h2><H2>都不行
+        （2）.可以使用name配置项指定组件在开发者工具中呈现的名字 
+    -->
+
+
+
+    <div id="root">
+        <h1>{{msg}}</h1>
+        <hello></hello>
+        <hr>
+        <!-- 编写组件标签 -->
+        <school></school>
+        <hr><hr>
+        <!-- 编写组件标签 -->
+        <student></student>
+        
+
+    </div>
+    <div id="root2">
+            <hello></hello>
+    </div>
+
+    <script>
+        Vue.config.productionTip = false
+
+        //创建school组件
+        const school = Vue.extend({
+            template:`
+            <div>
+                <h2>学校名称：{{schoolName}}</h2>
+                <h2>学校地址：{{address}}</h2>
+                <button @click="showName">点我提示学校名</button>
+            </div>`,
+            methods: {
+                showName(){
+
+                }
+            },
+            data(){
+                return{
+                    schoolName:'南邮通达',
+                    address:'江苏扬州',
+                }  
+            }
+        })
+
+        //创建student组件
+        const student = Vue.extend({
+            template:`
+            <div>
+                <h2>学生姓名：{{studentName}}</h2>
+                <h2>学生年龄：{{age}}</h2>
+            </div>`,
+            data(){
+                return{
+                    studentName:'小明',
+                    age:21,
+                }  
+            }
+        })
+
+
+        const hello = Vue.extend({
+            template:`
+            <div>
+                <h1>hello world</h1>
+            </div> `,
+        })
+
+        //全局注册组件
+        Vue.component('hello',hello)
+
+        //创建vm
+        new Vue({
+            el:'#root',
+            data:{
+                msg:'666'
+
+            },
+           //注册组件(局部注册)
+           components:{
+                school,
+                student
+           }
+        })
+
+        new Vue({
+            el:'#root2',
+        })
+    </script>
+</body>
+</html>
