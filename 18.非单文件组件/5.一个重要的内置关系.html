@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="root">
+
+
+    </div>
+
+    <script>
+        Vue.config.productionTip = false
+        
+        //定义一个构造函数
+        //#region
+        function Demo(){
+            this.a = 1
+            this.b = 2
+        }
+        //创建一个Demo的实例对象
+        const d = new Demo()
+        
+        console.log(Demo.prototype)//显示原型属性
+
+        console.log(d.__proto__)//隐式原型属性
+
+
+        console.log(Demo.prototype===d.__proto__)
+        //程序员通过显示原型属性操作原型对象，追加一个x属性
+        Demo.prototype.x = 99
+
+        console.log('@',d)
+        //#endregion
+       //创建school组件
+       
+       const school = Vue.extend({
+            nama:'school',
+            template:`
+            <div>
+                <h2>学校名称：{{schoolName}}</h2>
+                <h2>学校地址：{{address}}</h2>
+            </div>`,
+            data(){
+                return{
+                    schoolName:'南邮通达',
+                    address:'江苏扬州',
+                }  
+            },
+        })
+
+        new Vue({
+            el:'#root',
+            data:{
+                msg:'hello'
+            },
+        })
+
+    </script>
+</body>
+</html>
